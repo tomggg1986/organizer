@@ -1,24 +1,17 @@
 package com.organizer.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 public class Task {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "id", updatable = false, nullable = false)
-    private UUID id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
     @ManyToOne
+    @JoinColumn(name = "owner")
     private User owner;
 
     @ManyToMany
@@ -27,11 +20,11 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private Set<Note> notes;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
