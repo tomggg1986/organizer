@@ -1,0 +1,12 @@
+<p>
+  {{name}}
+</p>
+
+<li *ngFor="let task of tasks">
+  <span class="badge">{{task.id}}</span>
+  <div><div *ngFor="let note of task.notes">
+    {{note.id}}  {{note.name}} <div style="border-style: solid;">{{note.text}}</div>
+     </div>
+  </div>
+</li>
+
